@@ -1,0 +1,20 @@
+# Checkpoints
+Checkpoints_*/
+
+# Generated images
+SampledImgs*/
+FID_GT/
+FID_Temp*/
+GammaODE_Results*/
+*.png
+
+# Dataset
+CIFAR10/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Claude config
+.claude/
