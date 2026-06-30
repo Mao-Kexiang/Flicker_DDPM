@@ -46,9 +46,10 @@ Flicker-DDPM at T=150 outperforms standard DDPM at T=500 (FID 12.24 vs 13.02), y
 ### Sample Comparison (T=150)
 
 <p align="center">
-  <img src="figures/compare.png" width="600"/>
+  <img src="figures/samples_colored_eta0.2_T150.png" width="400"/>
+  <img src="figures/samples_white_T150.png" width="400"/>
 </p>
-<p align="center"><em>Top: Flicker-DDPM (η=0.2). Bottom: white-noise DDPM. At the same step budget, Flicker-DDPM produces sharper, more coherent images.</em></p>
+<p align="center"><em>Left: Flicker-DDPM (η=0.2). Right: white-noise DDPM. At the same step budget, Flicker-DDPM produces sharper, more coherent images.</em></p>
 
 ## Why It Works: Linearization of Reverse Dynamics
 
