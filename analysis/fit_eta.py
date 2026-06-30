@@ -7,6 +7,7 @@ fit_eta.py — 从 CIFAR-10 的功率谱直接拟合幂律指数。
   3. 在 log k - log D 空间做线性回归，斜率即为幂律指数
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -15,6 +16,8 @@ from scipy.stats import linregress
 import torch
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def compute_radial_power_spectrum(data_root='./CIFAR10', n_samples=50000):
@@ -81,10 +84,10 @@ def fit_power_law(k_arr, power_arr, k_min=1, k_max=14):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_root', type=str, default='./CIFAR10')
+    parser.add_argument('--data_root', type=str, default=os.path.join(PROJECT_ROOT, 'CIFAR10'))
     parser.add_argument('--k_min', type=int, default=1)
     parser.add_argument('--k_max', type=int, default=14)
-    parser.add_argument('--out', type=str, default='./fit_eta_results.png')
+    parser.add_argument('--out', type=str, default=os.path.join(PROJECT_ROOT, 'fit_eta_results.png'))
     args = parser.parse_args()
 
     print("=" * 60)

@@ -11,11 +11,9 @@ from torchvision import transforms
 from torchvision.datasets import CIFAR10
 from torchvision.utils import save_image
 
-from pytorch_fid.fid_score import calculate_fid_given_paths
-
-from Diffusion import DiffusionSampler
-from NoiseModule import NoiseModule
-from Train import _build_model, _build_noise_module, _make_eval_labels
+from core.diffusion import DiffusionSampler
+from core.noise import NoiseModule
+from core.train import _build_model, _build_noise_module, _make_eval_labels
 
 
 def _is_distributed():
@@ -163,6 +161,7 @@ def run_fid(config):
                        rank, world_size)
 
         if rank == 0:
+            from pytorch_fid.fid_score import calculate_fid_given_paths
             fid_score = calculate_fid_given_paths(
                 [gt_dir, temp_dir], batch_size=50, device=device, dims=2048)
             print(f"  FID: {fid_score:.4f}")

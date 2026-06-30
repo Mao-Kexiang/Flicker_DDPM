@@ -1,6 +1,6 @@
 import argparse
-from Train import train, eval
-from EvalFID import run_fid
+from core.train import train, eval
+from core.eval_fid import run_fid
 
 
 def main(model_config=None):

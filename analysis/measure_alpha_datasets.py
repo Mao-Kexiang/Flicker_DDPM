@@ -8,6 +8,7 @@ measure_alpha_datasets.py — 测量多个数据集的功率谱幂律指数 alph
   4. 预测最优 eta = (3 - alpha_eff) / 2
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -16,6 +17,8 @@ from scipy.stats import linregress
 import torch
 from torchvision import transforms, datasets
 from torch.utils.data import DataLoader
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def compute_radial_spectrum(dataloader, img_size, max_samples=50000):
@@ -83,19 +86,18 @@ def get_dataset(name, img_size=32):
     ])
 
     if name == 'cifar10':
-        ds = datasets.CIFAR10(root='./CIFAR10', train=True, download=True, transform=t)
+        ds = datasets.CIFAR10(root=os.path.join(PROJECT_ROOT, 'CIFAR10'), train=True, download=True, transform=t)
     elif name == 'fashion_mnist':
-        ds = datasets.FashionMNIST(root='./FashionMNIST', train=True, download=True, transform=t_gray)
+        ds = datasets.FashionMNIST(root=os.path.join(PROJECT_ROOT, 'FashionMNIST'), train=True, download=True, transform=t_gray)
     elif name == 'mnist':
-        ds = datasets.MNIST(root='./MNIST', train=True, download=True, transform=t_gray)
+        ds = datasets.MNIST(root=os.path.join(PROJECT_ROOT, 'MNIST'), train=True, download=True, transform=t_gray)
     elif name == 'celeba':
-        ds = datasets.CelebA(root='./CelebA', split='train', download=False,
+        ds = datasets.CelebA(root=os.path.join(PROJECT_ROOT, 'CelebA'), split='train', download=False,
                              transform=t)
     elif name == 'imagenet32':
-        # 使用 CIFAR-100 作为 ImageNet32 的替代（类别更多，更接近 ImageNet 分布）
-        ds = datasets.CIFAR100(root='./CIFAR100', train=True, download=True, transform=t)
+        ds = datasets.CIFAR100(root=os.path.join(PROJECT_ROOT, 'CIFAR100'), train=True, download=True, transform=t)
     elif name == 'svhn':
-        ds = datasets.SVHN(root='./SVHN', split='train', download=True, transform=t)
+        ds = datasets.SVHN(root=os.path.join(PROJECT_ROOT, 'SVHN'), split='train', download=True, transform=t)
     else:
         raise ValueError(f"Unknown dataset: {name}")
 
@@ -108,7 +110,7 @@ def main():
     parser.add_argument('--datasets', nargs='+',
                         default=['cifar10', 'fashion_mnist', 'mnist', 'svhn', 'imagenet32'])
     parser.add_argument('--img_size', type=int, default=32)
-    parser.add_argument('--out', type=str, default='./alpha_multi_datasets.png')
+    parser.add_argument('--out', type=str, default=os.path.join(PROJECT_ROOT, 'alpha_multi_datasets.png'))
     args = parser.parse_args()
 
     print("=" * 70)

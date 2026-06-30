@@ -18,10 +18,10 @@ from torchvision import transforms
 from torchvision.datasets import CIFAR10
 from torchvision.utils import save_image
 
-from Diffusion import DiffusionTrainer, DiffusionSampler
-from NoiseModule import NoiseModule
-from Visualizer import DiffusionAnalyzer
-from Scheduler import GradualWarmupScheduler
+from core.diffusion import DiffusionTrainer, DiffusionSampler
+from core.noise import NoiseModule
+from core.visualizer import DiffusionAnalyzer
+from core.scheduler import GradualWarmupScheduler
 
 
 def _setup_ddp():
@@ -51,14 +51,14 @@ def _build_noise_module(config):
 
 def _build_model(config, device):
     if config["mode"] == "cfg":
-        from ModelCondition import UNet
+        from models.unet_cfg import UNet
         model = UNet(
             T=config["T"], num_labels=config.get("num_labels", 10),
             ch=config["channel"], ch_mult=config["channel_mult"],
             num_res_blocks=config["num_res_blocks"], dropout=config["dropout"],
         ).to(device)
     else:
-        from Model import UNet
+        from models.unet import UNet
         model = UNet(
             T=config["T"], ch=config["channel"], ch_mult=config["channel_mult"],
             attn=config.get("attn", [2]),

@@ -30,9 +30,10 @@ import torch.nn.functional as F
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
 
-sys.path.insert(0, os.path.dirname(__file__))
-from Train import _build_model, _build_noise_module, _make_eval_labels
-from Diffusion import extract
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
+from core.train import _build_model, _build_noise_module, _make_eval_labels
+from core.diffusion import extract
 
 
 # ------------------------------------------------------------------ #
@@ -618,10 +619,10 @@ def main():
     parser.add_argument("--w", type=float, default=1.8)
     parser.add_argument("--eta", type=float, default=0.2)
     parser.add_argument("--colored_method", type=str, default="cholesky")
-    parser.add_argument("--ckpt_dir", type=str, default="./Checkpoints_T500/")
+    parser.add_argument("--ckpt_dir", type=str, default=os.path.join(PROJECT_ROOT, "Checkpoints_T500/"))
     parser.add_argument("--ckpt", type=str, default="ckpt_199_.pt")
-    parser.add_argument("--out_dir", type=str, default="./GammaODE_Results/")
-    parser.add_argument("--data_root", type=str, default="./CIFAR10/")
+    parser.add_argument("--out_dir", type=str, default=os.path.join(PROJECT_ROOT, "GammaODE_Results/"))
+    parser.add_argument("--data_root", type=str, default=os.path.join(PROJECT_ROOT, "CIFAR10/"))
     parser.add_argument("--device", type=str, default="cuda:0")
     parser.add_argument("--load_data", type=str, default=None,
                         help="Load saved .npz, skip measurement, re-plot only")

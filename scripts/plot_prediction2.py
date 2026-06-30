@@ -9,10 +9,13 @@ Theory predicts:
   - Colored: phi ≈ phi_data throughout (constant)
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def make_k_grid(H, W):
@@ -36,8 +39,8 @@ def main():
     H = 32
     k_cut = H // 4  # k_c = 8
 
-    colored = np.load('GammaODE_Results/gamma_ode_data.npz')
-    white = np.load('GammaODE_Results_white/gamma_ode_data.npz')
+    colored = np.load(os.path.join(PROJECT_ROOT, 'GammaODE_Results/gamma_ode_data.npz'))
+    white = np.load(os.path.join(PROJECT_ROOT, 'GammaODE_Results_white/gamma_ode_data.npz'))
 
     D_data = colored['D_data']
     phi_data = compute_phi(D_data[np.newaxis], H, k_cut)[0]
@@ -107,14 +110,14 @@ def main():
     fig.suptitle(r'Prediction 2 Verification: $\varphi(t) = P_L / P_H$ '
                  f'($k_c = {k_cut}$)', fontsize=14, y=1.02)
     fig.tight_layout()
-    fig.savefig('fig_prediction2_comparison.png', dpi=150, bbox_inches='tight')
+    fig.savefig(os.path.join(PROJECT_ROOT, 'fig_prediction2_comparison.png'), dpi=150, bbox_inches='tight')
     plt.close(fig)
     print("\nSaved: fig_prediction2_comparison.png")
 
     # ---- Also save individual fig8 into each results dir ----
     for tag, D_act, out_dir in [
-        ('Colored', colored['D_actual'], 'GammaODE_Results'),
-        ('White', white['D_actual'], 'GammaODE_Results_white'),
+        ('Colored', colored['D_actual'], os.path.join(PROJECT_ROOT, 'GammaODE_Results')),
+        ('White', white['D_actual'], os.path.join(PROJECT_ROOT, 'GammaODE_Results_white')),
     ]:
         phi = compute_phi(D_act, H, k_cut)
         fig, ax = plt.subplots(figsize=(8, 5))

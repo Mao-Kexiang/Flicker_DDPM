@@ -1,11 +1,14 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 T_values = [100, 150, 200, 500]
-white_paths = [f'Checkpoints_T{T}/fid_data.npz' for T in T_values]
-colored_paths = [f'Checkpoints_colored_eta0.2_T{T}/fid_data.npz' for T in T_values]
+white_paths = [os.path.join(PROJECT_ROOT, f'Checkpoints_T{T}/fid_data.npz') for T in T_values]
+colored_paths = [os.path.join(PROJECT_ROOT, f'Checkpoints_colored_eta0.2_T{T}/fid_data.npz') for T in T_values]
 
 white_fid = []
 colored_fid = []
@@ -44,5 +47,5 @@ ax.grid(True, axis='y', linestyle='--', alpha=0.5)
 ax.set_axisbelow(True)
 
 fig.tight_layout()
-fig.savefig('fid_comparison_final.png', dpi=150)
+fig.savefig(os.path.join(PROJECT_ROOT, 'fid_comparison_final.png'), dpi=150)
 print("Saved to fid_comparison_final.png")

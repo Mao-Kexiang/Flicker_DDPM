@@ -16,6 +16,7 @@ verify_matern.py — 验证 Matérn 协方差族能否解释 CIFAR-10 的 α=2.7
 本脚本验证 Matérn 谱对 CIFAR-10 数据的拟合质量。
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -26,8 +27,12 @@ import torch
 from torchvision import transforms
 from torchvision.datasets import CIFAR10
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-def compute_radial_power_spectrum(data_root='./CIFAR10', n_samples=50000):
+
+def compute_radial_power_spectrum(data_root=None, n_samples=50000):
+    if data_root is None:
+        data_root = os.path.join(PROJECT_ROOT, 'CIFAR10')
     """计算 CIFAR-10 的径向平均功率谱。"""
     dataset = CIFAR10(
         root=data_root, train=True, download=True,
@@ -121,8 +126,8 @@ def fit_matern(k_arr, D_data, k_min=1, k_max=14):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_root', type=str, default='./CIFAR10')
-    parser.add_argument('--out', type=str, default='./theory_alpha_gt2.png')
+    parser.add_argument('--data_root', type=str, default=os.path.join(PROJECT_ROOT, 'CIFAR10'))
+    parser.add_argument('--out', type=str, default=os.path.join(PROJECT_ROOT, 'theory_alpha_gt2.png'))
     args = parser.parse_args()
 
     print("=" * 60)

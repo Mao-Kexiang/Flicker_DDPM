@@ -4,6 +4,7 @@ measure_alpha_celeba_lsun.py — 测量 CelebA 和 LSUN Church 的功率谱幂�
 使用 HuggingFace datasets 加载数据。
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -13,6 +14,8 @@ import torch
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader
 from datasets import load_dataset
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class HFImageDataset(Dataset):
@@ -89,7 +92,7 @@ def main():
                         default='/opt/data/bcmdata/ZONES/home/PROJECTS/homefile/PRIVATE/milksang/DDPM_trial/CelebA_HF')
     parser.add_argument('--lsun_cache', type=str,
                         default='/opt/data/bcmdata/ZONES/home/PROJECTS/homefile/PRIVATE/milksang/DDPM_trial/LSUN_Church_HF')
-    parser.add_argument('--out', type=str, default='./alpha_celeba_lsun.png')
+    parser.add_argument('--out', type=str, default=os.path.join(PROJECT_ROOT, 'alpha_celeba_lsun.png'))
     args = parser.parse_args()
 
     t = transforms.Compose([

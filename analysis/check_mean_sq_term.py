@@ -1,15 +1,18 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pickle
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def load_cifar10_batch(path):
     with open(path, 'rb') as f:
         d = pickle.load(f, encoding='bytes')
     return d[b'data']  # (10000, 3072) uint8
 
-data_dir = '/home/user_milksang/private/homefile/DDPM_trial/DDPM_unified/CIFAR10/cifar-10-batches-py'
+data_dir = os.path.join(PROJECT_ROOT, 'CIFAR10/cifar-10-batches-py')
 raw = load_cifar10_batch(f'{data_dir}/data_batch_1')
 imgs = raw.reshape(-1, 3, 32, 32).astype(np.float32) / 255.0
 imgs = (imgs - 0.5) / 0.5  # [-1, 1]
@@ -75,7 +78,7 @@ ax.set_title(r'$|\langle x_k \rangle|^2$ (absolute value)')
 ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-out = '/home/user_milksang/private/homefile/DDPM_trial/DDPM_unified/mean_sq_term_check.png'
+out = os.path.join(PROJECT_ROOT, 'mean_sq_term_check.png')
 plt.savefig(out, dpi=150, bbox_inches='tight')
 print(f"Saved: {out}")
 

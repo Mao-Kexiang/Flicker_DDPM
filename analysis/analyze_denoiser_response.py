@@ -20,7 +20,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-OUT_DIR = './TheoryResults'
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT_DIR = os.path.join(PROJECT_ROOT, 'TheoryResults')
 HW = 32 * 32
 
 # ── Load saved data ──────────────────────────────────────────────

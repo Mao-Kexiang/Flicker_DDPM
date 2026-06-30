@@ -1,13 +1,16 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 cases = [
-    ("Checkpoints_T500/fid_data.npz",              "White, T=500"),
-    ("Checkpoints_T150/fid_data.npz",              "White, T=150"),
-    ("Checkpoints_colored_eta0.2_T500/fid_data.npz","Colored (η=0.2), T=500"),
-    ("Checkpoints_colored_eta0.2_T150/fid_data.npz","Colored (η=0.2), T=150"),
+    (os.path.join(PROJECT_ROOT, "Checkpoints_T500/fid_data.npz"),              "White, T=500"),
+    (os.path.join(PROJECT_ROOT, "Checkpoints_T150/fid_data.npz"),              "White, T=150"),
+    (os.path.join(PROJECT_ROOT, "Checkpoints_colored_eta0.2_T500/fid_data.npz"),"Colored (η=0.2), T=500"),
+    (os.path.join(PROJECT_ROOT, "Checkpoints_colored_eta0.2_T150/fid_data.npz"),"Colored (η=0.2), T=150"),
 ]
 
 colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
@@ -30,5 +33,5 @@ ax.grid(True, alpha=0.3)
 ax.tick_params(labelsize=20)
 
 fig.tight_layout()
-fig.savefig('fid_combined.png', dpi=150)
+fig.savefig(os.path.join(PROJECT_ROOT, 'fid_combined.png'), dpi=150)
 print("Saved to fid_combined.png")

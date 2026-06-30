@@ -1,9 +1,14 @@
+import os
+import sys
 import torch
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from NoiseModule import NoiseModule
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
+from core.noise import NoiseModule
 
 torch.manual_seed(42)
 
@@ -94,5 +99,5 @@ ax2.legend(fontsize=20, loc='upper right')
 ax2.tick_params(labelsize=28)
 ax2.grid(True, alpha=0.3, which='both')
 
-fig.savefig('noise_combined.png', dpi=150)
+fig.savefig(os.path.join(PROJECT_ROOT, 'noise_combined.png'), dpi=150)
 print("Saved noise_combined.png")
