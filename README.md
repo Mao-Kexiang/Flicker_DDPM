@@ -148,8 +148,9 @@ python analysis/fit_eta.py
 ```bibtex
 @article{mao2026flicker,
   title={Flicker-DDPM: Accelerating Denoising Diffusion via 1/f Colored Noise Injection},
-  author={Mao, Kexiang},
-  journal={arXiv preprint arXiv:2606.03393},
+  author={Mao, KeXiang and Li, FanCheng},
+  journal={arXiv e-prints},
+  pages={arXiv--2606},
   year={2026}
 }
 ```
