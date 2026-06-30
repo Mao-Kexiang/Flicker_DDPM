@@ -36,7 +36,7 @@ For CIFAR-10: α = 2.70 → η<sub>opt</sub> = 0.20. **No hyperparameter search 
 | 200 | 18.08 | **11.57** | −36.0% |
 | 500 | 13.02 | 11.96 | −8.1% |
 
-Flicker-DDPM at T=150 outperforms standard DDPM at T=500 (FID 12.24 vs 13.02), yielding a **500/150 ≈ 3.33× speedup**.
+FID is computed using 10,000 generated samples against the CIFAR-10 training set. Flicker-DDPM at T=150 outperforms standard DDPM at T=500 (FID 12.24 vs 13.02), yielding a **500/150 ≈ 3.33× speedup**.
 
 <p align="center">
   <img src="figures/fid_comparison_final.png" width="500"/>
