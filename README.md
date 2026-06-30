@@ -1,5 +1,7 @@
 # Flicker-DDPM: Accelerating Denoising Diffusion via 1/f Colored Noise Injection
 
+[![arXiv](https://img.shields.io/badge/arXiv-2606.03393-b31b1b.svg)](https://arxiv.org/abs/2606.03393)
+
 > **Flicker-DDPM** incorporates flicker (1/f) noise inspired by self-organized criticality into denoising diffusion probabilistic models, achieving **3.33× sampling acceleration** with simultaneous quality improvement on CIFAR-10.
 
 <p align="center">
