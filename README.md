@@ -146,10 +146,11 @@ python analysis/fit_eta.py
 ## Citation
 
 ```bibtex
-@article{mao2025flicker,
-  title={Flicker-DDPM: Accelerating Denoising Diffusion via $1/f$ Colored Noise Injection},
-  author={Mao, Kexiang and Li, Fancheng},
-  year={2025}
+@article{mao2026flicker,
+  title={Flicker-DDPM: Accelerating Denoising Diffusion via 1/f Colored Noise Injection},
+  author={Mao, Kexiang},
+  journal={arXiv preprint arXiv:2606.03393},
+  year={2026}
 }
 ```
 
