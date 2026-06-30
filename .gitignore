@@ -8,8 +8,12 @@ FID_Temp*/
 GammaODE_Results*/
 *.png
 
-# Dataset
+# Datasets
 CIFAR10/
+CIFAR100/
+MNIST/
+FashionMNIST/
+SVHN/
 
 # Python cache
 __pycache__/

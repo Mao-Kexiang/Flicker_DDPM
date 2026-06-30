@@ -67,7 +67,7 @@ def main():
     axes[0].set_xlabel('reverse step n', fontsize=12)
     axes[0].set_ylabel(r'$\varphi = P_L\,/\,P_H$', fontsize=12)
     axes[0].set_title(r'(a) $\varphi(n)$ trajectory', fontsize=13)
-    axes[0].legend(fontsize=10)
+    axes[0].legend(fontsize=12)
     axes[0].grid(True, alpha=0.3)
 
     # Panel 2: normalized phi/phi_data
@@ -78,7 +78,7 @@ def main():
     axes[1].set_xlabel('reverse step n', fontsize=12)
     axes[1].set_ylabel(r'$\varphi(n)\,/\,\varphi_{data}$', fontsize=12)
     axes[1].set_title('(b) Normalized (green = ±10% band)', fontsize=13)
-    axes[1].legend(fontsize=10)
+    axes[1].legend(fontsize=12)
     axes[1].grid(True, alpha=0.3)
 
     # Panel 3: P_L and P_H separately
@@ -101,7 +101,7 @@ def main():
     axes[2].set_xlabel('reverse step n', fontsize=12)
     axes[2].set_ylabel('Normalized total power', fontsize=12)
     axes[2].set_title(r'(c) $P_L(n)$ and $P_H(n)$ (normalized to $n=0$)', fontsize=13)
-    axes[2].legend(fontsize=9)
+    axes[2].legend(fontsize=12)
     axes[2].grid(True, alpha=0.3)
 
     fig.suptitle(r'Prediction 2 Verification: $\varphi(t) = P_L / P_H$ '
@@ -125,7 +125,7 @@ def main():
         ax.set_ylabel(r'$\varphi = P_L / P_H$', fontsize=12)
         ax.set_title(f'{tag} noise: spectral order parameter ($k_c = {k_cut}$)',
                      fontsize=13)
-        ax.legend(fontsize=10)
+        ax.legend(fontsize=12)
         ax.grid(True, alpha=0.3)
         fig.tight_layout()
         fig.savefig(f'{out_dir}/fig8_phi_trajectory.png', dpi=150)
